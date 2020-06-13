@@ -7,15 +7,88 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
+  <style>
+    .sidebar>h1 a {
+      font-size: 20px;
+      color:black;
+    }
+    .content {
+      padding-top: 5px;
+    }
+    .markdown-section {
+      padding-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
   <script>
     window.$docsify = {
       name: '',
-      repo: ''
+      repo: '',
+      coverpage:false,
+      loadSidebar:true,
+      maxLevel: 2,
+      subMaxLevel:6,
+      auto2top: true,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md',
+      },
+      search: {
+      	placeholder: 'Type to search',
+      	noData: 'No Results!',
+        paths: 'auto',
+        depth: 6
+      },
+      plugins: [
+        function(hook, vm) {
+          hook.beforeEach(function(content) {
+            // 每次开始解析 Markdown 内容时调用
+            // 将所有../img替换成img
+            // https://github.com/docsifyjs/docsify/issues/936
+            return content.replace(/..\/img/g, "img");
+          })
+
+          hook.doneEach(function () {
+            window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')]);
+          })
+        }
+      ],
+      externalLinkTarget: '_target',
+      name: '城市空间数据分析方法——PYTHON语言实现',
+      //repo: 'https://github.com/richieBao/Urban-Spatial-Data-Analysis_python'
+
+
+
+
+
+
+
+
+
+
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": { fonts: ["TeX"] }
+    });
+  </script>
+  <script src="docsify.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script>
+  <script src="//unpkg.com/docsify-copy-code"></script>
+  <script src="//unpkg.com/prismjs/components/prism-bash.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-python.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
