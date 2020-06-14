@@ -60,23 +60,7 @@
         paths: 'auto',
         depth: 6
       },
-      plugins: [
-        function(hook, vm) {
-          hook.beforeEach(function(content) {
-            // 每次开始解析 Markdown 内容时调用
-            // 将所有../img替换成img
-            // https://github.com/docsifyjs/docsify/issues/936
-            return content.replace(/..\/img/g, "img");
-          })
 
-          hook.doneEach(function () {
-            window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')]);
-          })
-        }
-      ],
-      externalLinkTarget: '_target',
-      name: '城市空间数据分析方法——PYTHON语言实现',
-      repo: 'https://richiebao.github.io/Urban-Spatial-Data-Analysis_python/',
       pagination: {
         previousText: 'Previous',
         nextText: 'Next',
