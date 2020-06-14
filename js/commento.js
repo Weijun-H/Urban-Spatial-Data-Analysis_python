@@ -6,6 +6,6 @@ $docsify.plugins = [].concat(function(t) {
         var i = a.getNode("#main");
         n.style = "width: " + i.clientWidth + "px !important; margin: 0 auto 20px;", a.appendTo(a.find(".content"), n);
         var e = a.create("script");
-        e.src = "https://commento.mydomain.org/js/commento.js", a.appendTo(a.body, e);
+        e.src = "https://cdn.commento.io/js/commento.js", a.appendTo(a.body, e);
     })
 }, $docsify.plugins);
