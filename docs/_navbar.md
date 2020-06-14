@@ -1,20 +1,3 @@
 * [caDesign](http://cadesign.cn/caDesignS/)
-* 前端基础
-    * [CSS](/) 
-    * [Javascript](/js/guidebook/)
-    * [ES6](/)
-    * [typescript](/typescript/guidebook/)
-* 前端进阶
-    * [vue](/)
-    * [react](/)
-    * [webpack](/)
-    * [浏览器](/)
-    * [前端安全](/)
-    * [性能优化](/)
-* [算法](/dataStructure-and-algorithm/)
-* [python](/python/guidebook/)
-* 计算机基础
-    * [计算机网络](/computer-network/notes/)
-    * [操作系统](/operating-system/)
-    * [编译原理](/compiler-principles/)
-* [面试](/interview/)
+* [code](https://github.com/richieBao/Urban-Spatial-Data-Analysis_python/tree/master/code)
+* [Notebook]()
