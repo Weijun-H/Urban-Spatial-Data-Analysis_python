@@ -12,16 +12,10 @@
 
 在第2阶段-“合体期”，希冀更多的伙伴们能够加入其中，而不是‘炼虚期’的孤军奋战，互相促进，成就‘大道’🦍。作者项因为成书的过程和所要达到的要求，亦需划分为几项：
 
-* 作者——完成著作的主体，保证成书的完成；
-* 章节作者——部分或零星创作，对成书有所贡献；
-* 手绘君（漫画图表）——希望能有日本漫画学习书的风格，真的会爱上学习和研究，还有生活；
-* 英语版语言——语言纠正，修正审核，不含翻译（翻译由作者完成）；
-* 测试团体——数字营造学社，和更大基数的社区伙伴们；
-
-
-
-
-
-
-
-
+| 角色      |      工作     |  修行者 |
+|:----------|:-------------|:------|
+| 作者 |  完成著作的主体，保证成书的完成； |<a href="url"><img src="./imgs/richie.jpg" height="auto" width="120" style="border-radius:50%" title="caDesign"></a> <em>包瑞清(Richie Bao)</em> <a href="url"><img src="./imgs/none.jpg" height="auto" width="120" style="border-radius:50%" title="Vacant Position"></a> <em>虚位以待</em>|
+| 章节作者 | 部分或零星创作，对成书有所贡献；  |<a href="url"><img src="./imgs/none.jpg" height="auto" width="120" style="border-radius:50%" title="Vacant Position"></a> <em>虚位以待</em> |
+| 手绘君 | 希望能有日本漫画学习书的风格，真的会爱上学习和研究，还有生活； |<a href="url"><img src="./imgs/lj.jpg" height="auto" width="120" style="border-radius:50%" title="caDesign"></a> <em>李静(Jing Li)</em> <a href="url"><img src="./imgs/none.jpg" height="auto" width="120" style="border-radius:50%" title="Vacant Position"></a> <em>虚位以待</em>|
+| 语言君 | 英语语言纠正，修正审核，不含翻译（翻译由作者完成）； | 虚位以待 |
+| 测试君 | [数字营造学社](http://digit-x.org/digit/)，和更大基数的社区伙伴们。 |<a href="url"><img src="./imgs/avatar.png" height="auto" width="120" style="border-radius:50%" title="digti-x"></a> <em>数字营造学社(digit-x)</em> <a href="url"><img src="./imgs/none.jpg" height="auto" width="120" style="border-radius:50%" title="Vacant Position"></a> <em>虚位以待</em>|
