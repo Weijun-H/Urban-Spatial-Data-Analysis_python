@@ -1,5 +1,2 @@
 # test the commento 
-
-
-<script defer src="https://cdn.commento.io/js/commento.js"></script>
-<div id="commento"></div>
+This part will be submitted up to the github!!!
