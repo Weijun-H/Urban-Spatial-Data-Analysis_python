@@ -2,6 +2,6 @@
   <!--panels:start-->
   <!--div:floating-cat-->
 
-  <img src="/imgs/floating-cat.png">
+  <img src="./imgs/floating-cat.png">
 
   <!--panels:end-->
