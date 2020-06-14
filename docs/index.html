@@ -96,7 +96,60 @@
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
   <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
-  <script src="//js/commento.js"></script>
+
+  <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
+	<script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
+	<script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script>
+	    var gitalkConfig = {
+    		clientID: '2ce59506db6cd5b2cb76', //上面生成的clientID
+    		clientSecret: 'f247abc9e78a158e69036d8966afd1bb75c6aa4c',//上面生成的clientSecret
+    		repo: 'Urban spatial data analysis method_python',//Github博客项目名
+    		owner: 'richieBao',//github用户名
+    		admin: [richieBao],//github用户名，可以添加多个
+    		distractionFreeMode: false
+	   }
+	    window.$docsify = {
+            loadSidebar: true,
+            plugins: [
+            // 评论会自动同步成为项目的issue, //这些代码是给issue添加lable以及更改样式 //我的博客是取每个路由地址的第一级目录名称作为label，你可以自己操作路径// ，自己自定义
+                function (hook, vm) {
+                    hook.doneEach(function () {
+                        var label='', domObj, main, divEle, gitalk;
+                        var labels = vm.route.path.split('/');
+                        if(labels.length) {
+                            for (let i = 0; i < labels.length; i++) {
+                                var v = labels[i]
+                                if(v && v !=='README') {
+                                    label = v
+                                    break;
+                                }
+                            }
+                        }
+                        domObj = Docsify.dom;
+                        main = domObj.getNode("#main");
+                        Array.apply(
+                            null,
+                            document.querySelectorAll("div.gitalk-container")
+                        ).forEach(function (ele) {
+                            ele.remove();
+                        });
+    
+                        divEle = domObj.create("div");
+                        divEle.id = "gitalk-container-" + label;
+                        divEle.className = "gitalk-container";
+                        divEle.style = "width: " + main.clientWidth + "px; margin: 0 auto 20px;";
+                        domObj.appendTo(domObj.find(".content"), divEle);
+                        gitalk = new Gitalk(
+                            Object.assign(gitalkConfig, {id: !label ? "home" : label})
+                        );
+                        gitalk.render("gitalk-container-" + label);
+                    });
+                }
+            ]
+    }
+  </script>
+
 
 </body>
 </html>
