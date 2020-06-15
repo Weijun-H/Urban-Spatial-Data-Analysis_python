@@ -18,15 +18,15 @@
 | 章节作者 | 部分或零星创作，对成书有所贡献；  |<a href="url"><img src="./imgs/none.jpg" height="auto" width="120" style="border-radius:50%" title="Vacant Position"></a> <em>虚位以待</em> |
 | 手绘君 | 希望能有日本漫画学习书的风格，真的会爱上学习和研究，还有生活； |<a href="url"><img src="./imgs/lj.jpg" height="auto" width="120" style="border-radius:50%" title="caDesign"></a> <em>李静(Jing Li)</em> <a href="url"><img src="./imgs/none.jpg" height="auto" width="120" style="border-radius:50%" title="Vacant Position"></a> <em>虚位以待</em>|
 | 语言君 | 英语语言纠正，修正审核，不含翻译（翻译由作者完成）； | 虚位以待 |
-| 测试君 | [数字营造学社](http://digit-x.org/digit/)，和更大基数的社区伙伴们； |<a href="url"><img src="./imgs/avatar.png" height="auto" width="120" style="border-radius:50%" title="digti-x"></a> <em>数字营造学社(digit-x)</em> <a href="url"><img src="./imgs/none.jpg" height="auto" width="120" style="border-radius:50%" title="Vacant Position"></a> <em>虚位以待</em>|
+| 贡献者(测试君) | [数字营造学社](http://digit-x.org/digit/)，和更大基数的社区伙伴们； |<a href="url"><img src="./imgs/avatar.png" height="auto" width="120" style="border-radius:50%" title="digti-x"></a> <em>数字营造学社(digit-x)</em> <a href="url"><img src="./imgs/none.jpg" height="auto" width="120" style="border-radius:50%" title="Vacant Position"></a> <em>虚位以待</em>|
 |技术审稿人 |负责代码审核，保证代码质量。 |<a href="url"><img src="./imgs/none.jpg" height="auto" width="120" style="border-radius:50%" title="Vacant Position"></a> <em>虚位以待</em> |
 
 ***虚位申请，✉️：<em>richiebao@outlook.com</em>***
 
 为了方便伙伴们的学习研究，此阶段的阐述，包含三个部分：
-* [纯粹的原始代码.py](https://github.com/richieBao/Urban-Spatial-Data-Analysis_python/tree/master/code)（spider解释器编写）；
+* [纯粹的原始代码.py](https://github.com/richieBao/Urban-Spatial-Data-Analysis_python/tree/master/code)（spider解释器编写,基于anaconda）；
 * [方便学习，交互的.ipynd文件](https://github.com/richieBao/Urban-Spatial-Data-Analysis_python/tree/master/notebook)（用JupyterLab 或Notebook实现）；
-* [用以成文阐述的文稿.md]()（Visual Studio Code等）。
+* [用以成文阐述的文稿.md](https://github.com/richieBao/Urban-Spatial-Data-Analysis_python/tree/master/docs/markdown)（Visual Studio Code等）。
 
 > 引用：如果您在研究中使用了该项目的代码
 @caDesign{
@@ -35,5 +35,12 @@
     note={\url{https://richiebao.github.io/Urban-Spatial-Data-Analysis_python}},
     year={2020}
 }
+
+👀关注我们：
+QQ群:caDesign设计-79325664      💬 微信服务号：<a href="url"><img src="./imgs/caDesign.jpg" height="auto" width="100" title="Vacant Position">
+
+
+
+
 
 

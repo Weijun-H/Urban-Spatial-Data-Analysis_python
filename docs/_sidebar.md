@@ -1,5 +1,4 @@
-* [简介](/markdown/test.md)
-* [阅读指南]()
+* [前言](./markdown/preface.md)
+* [指南](./markdown/instruction.md)
 * 1\. 工具准备
-    * [1.1 python 环境](/martkdown/test2.md)
-
+    * [1.1 python 环境]()
