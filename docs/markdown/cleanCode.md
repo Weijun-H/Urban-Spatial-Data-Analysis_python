@@ -43,4 +43,4 @@ def filePath(dirpath,fileType):
 
 类和分文件只是系统思维表现的一种手段，而对于项目的所有代码的组织，确定数据的流动走向，前后关联层级的配置，整体结构的把握，才能够保证代码的稳健性（robustness）。
 
-> 很喜欢《代码的整洁之道》Robert C. Martin.<em>Clean Code: A Handbook of Agile Software Craftsmanship</em>[M].U.S. Prentice Hall.August 11,2008. 这本阐述代码哲理的书，不管是刚刚进入代码领域，还是早已浸淫多年，通读后，偶尔翻一番，都会对自己的“武道之心”又有所坚持。
+> 很喜欢《代码的整洁之道》Robert C. Martin.<em>Clean Code: A Handbook of Agile Software Craftsmanship</em>[M].U.S. Prentice Hall.August 11,2008. 这本阐述代码哲理的书，不管是刚刚进入代码领域，还是早已浸淫多年，通读后，再偶尔翻一番，都会对自己的“武道之心”又有所坚持。
