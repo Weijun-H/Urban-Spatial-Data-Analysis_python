@@ -20,3 +20,10 @@
 为了学习代码，能够直接交互操作运行验证代码，并同时记录说明文字，则可以使用[JupyterLab或者Jupyter Notebook](https://jupyter.org/)，这个方式实际上更适合于教学、交流，当项目繁杂庞大时，应用Jupyter工具时，效率会大幅度下降，代码运行效率低，同时，不适合建立代码结构层次关系，代码的书写还是要在anaconda下的spyder中完成。另一个本地书写markdown文档的工具推荐使用[VNote](https://tamlok.github.io/vnote/en_us/)，这个仅作参考。
 
 每个人都会有自己做笔记的习惯，而作代码的笔记，与我们常规使用OneNote等工具有所不同，要高亮显示代码格式，最好能运行查看结果，因此需要结合自身情况来选择笔记工具，使得学习代码这件事事半功倍。
+
+<a href="https://www.anaconda.com/"><img src="./imgs/anacondaimg.jpg" height="50" width="auto" title="caDesign">
+<a href="https://www.python.org/downloads/"><img src="./imgs/python-logo@2x.png" height="50" width="auto" title="caDesign">
+<a href="https://code.visualstudio.com/"><img src="./imgs/vsc.jpg" height="35" width="auto" title="caDesign" align="top">
+<a href="https://www.jetbrains.com/pycharm/download/#section=windows"><img src="./imgs/PyCharm_Logo1.png" height="65" width="auto" title="caDesign" align="top">
+<a href="https://notepad-plus-plus.org/"><img src="./imgs/notepadlogo.png" height="50" width="auto" title="caDesign">
+<a href="https://jupyter.org/"><img src="./imgs/logo_svg.png" height="45" width="auto" title="caDesign">
