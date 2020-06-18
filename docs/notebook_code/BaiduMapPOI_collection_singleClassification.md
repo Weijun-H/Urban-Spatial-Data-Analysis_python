@@ -2,6 +2,8 @@
 > __+updated Tue Jun 16 14:26:28 2020 by Richie Bao
 
 # 百度地图POI数据的抓取与地理空间点地图
+[JupterLab .ipynb文件下载位置](https://github.com/richieBao/Urban-Spatial-Data-Analysis_python/tree/master/notebook/BaiduMapPOIcollection_ipynb)
+
 在城市空间分析中，必然会涉及到两个方面的数据，一类是实体的物质空间（强调几何意义），其亦可以划分为二维平面数据（例如遥感影像，城市地图等）和三维空间数据（例如雷达数据（高空扫描和地面扫描），一般意义上各类格式的城市三维模型等）；以及由物质空间承载的各类属性数据，一类反映二维平面数据的属性（与二维地理位置结合，可以划分到二维平面数据当中），例如用地类型、自然资源分布、地址名称等；和反映人类、动物及无形物质各类活动性质的数据，例如人们的活动轨迹（出租车和共享单车车行轨迹、夜间灯光、手机基站定位用户数量等）、动物迁徙路径和各类小气候测量指标变化等。
 
 [百度地图开放平台](http://lbsyun.baidu.com/index.php?title=%E9%A6%96%E9%A1%B5)提供地图相关的功能与服务，其Web服务API为开发者提供http/https接口，即开发者通过http/https形式发起检索请求，获取返回json或xml格式的检索数据。其中[兴趣点(POI,points of interest)](http://lbsyun.baidu.com/index.php?title=lbscloud/poitags)数据,目前包括21个大类，和无数小类，是反映物质空间承载的人类活动属性的数据（业态分布），如下：
