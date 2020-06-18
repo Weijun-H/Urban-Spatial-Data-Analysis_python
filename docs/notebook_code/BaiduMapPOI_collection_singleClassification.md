@@ -311,6 +311,8 @@ fig.show()
 ```
 <a href="https://jupyter.org/"><img src="./imgs/expe_1_2.jpg" height="auto" width="auto" title="caDesign">
 
+[查看交互图表](./html/POI_singlClassi.html)
+
 ### 1.4 要点
 #### 1.4.1 数据处理技术
 * 用字典更新数据
