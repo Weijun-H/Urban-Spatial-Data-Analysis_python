@@ -1,5 +1,15 @@
 # 城市空间数据分析方法——PYTHON语言实现
-> 持续更新中...
+<style>
+b{
+    font-size:26px;
+    color: #cfcfcf;
+    background: #e45656;
+    border-radius: 5px;
+    opacity: 85%;
+}
+</style>
+
+> <b>持续更新中...</b>
 
 《城市空间数据分析方法——PYTHON语言实现》（简称：空间数据_PY）的探索从2017-8-4日发布‘Python知识图谱（规划设计领域）以来，至2020-6-8日发布第49篇实验，已经历了1039天。关于城市空间数据分析方法的实验是无止境的，即使完成了50个，目前所从事的研究仍旧在生产着大量的代码，对于python空间部分的研究还会持续，最新的研究代码仍然会发布分享（于[炼虚期](https://github.com/richieBao/python-urbanPlanning)中查看）。
 
