@@ -5,8 +5,8 @@
     * [1.2 python解释器与笔记](./markdown/pythonInterpreterAndNote.md)
 * 2\. 实验
     * 2.1 百度地图POI数据分析
-        * [2.1.1 百度地图POI数据的抓取-单个分类实现与地理空间点地图](./notebook_code/BaiduMapPOI_collection_singleClassification.md)
-        * [2.1.2 百度地图POI数据的抓取-多个分类实现与描述性统计图表](./notebook_code/BaiduMapPOI_collection_multipleClassification.md)
+        * [2.1.1 单个分类POI数据爬取与地理空间点地图](./notebook_code/BaiduMapPOI_collection_singleClassification.md)
+        * [2.1.2 多个分类POI数据爬取与描述性统计图表](./notebook_code/BaiduMapPOI_collection_multipleClassification.md)
 * 检索
     * [代码工具索引](./markdown/codeToolIdx.md)
     * [数据索引](./markdown/dataIdx.md)
