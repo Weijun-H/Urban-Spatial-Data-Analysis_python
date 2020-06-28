@@ -18,10 +18,10 @@ def baiduPOI_dataCrawler(query_dic,bound_coordinate,partition,page_num_range,poi
         for file_path in poi_fn_list:
             fP=pathlib.Path(file_path)
             if fP.suffix=='.csv':
-                poi_csv=open(poi_fn_csv,'w',encoding='utf-8')
+                poi_csv=open(fP,'w',encoding='utf-8')
                 csv_writer=csv.writer(poi_csv)    
             elif fP.suffix=='.json':
-                poi_json=open(poi_fn_json,'w',encoding='utf-8')
+                poi_json=open(fP,'w',encoding='utf-8')
     num=0
     jsonDS=[] #存储读取的数据，用于.json格式数据的保存
     #循环切分的检索区域，逐区下载数据

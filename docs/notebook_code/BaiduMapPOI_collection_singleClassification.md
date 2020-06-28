@@ -1,5 +1,5 @@
 > Created on Tue Sep 12 15/58/43 2017  @author: Richie Bao-caDesign设计(cadesign.cn)
-> __+updated Tue Jun 16 14/26/28 2020 by Richie Bao
+> __+updated on Tue Jun 16 14/26/28 2020 by Richie Bao
 
 # 百度地图POI数据的抓取与地理空间点地图
 [JupterLab .ipynb文件下载位置](https://github.com/richieBao/Urban-Spatial-Data-Analysis_python/tree/master/notebook/BaiduMapPOIcollection_ipynb)
@@ -64,6 +64,8 @@ poi_fn_json=os.path.join(data_path,'poi_json.json')
 
 配置请求参数，注意其中page_num参数为页数递增，初始参数时，配置页数范围`page_num_range=range(20)`。而output参数直接配置为固定的'json'，因此直接在函数内部实现。同时，由于百度API的限制，检索区域内最多返回的POI数据量有限制，造成下载疏漏，因此如果下载区域很大时，最好是将其切分为数个矩形逐一下载，从而增加一个配置参数`partition`实现检索区域的切分次数，如果设置为2，则切分矩形为4份检索区域分别下载。
 
+注意在配置坐标时，使用[百度地图坐标拾取系统](http://api.map.baidu.com/lbsapi/getpoint/index.html)
+
 
 ```python
 bound_coordinate={'leftBottom':[108.776852,34.186027],'rightTop':[109.129275,34.382171]} #
@@ -95,10 +97,10 @@ def baiduPOI_dataCrawler(query_dic,bound_coordinate,partition,page_num_range,poi
         for file_path in poi_fn_list:
             fP=pathlib.Path(file_path)
             if fP.suffix=='.csv':
-                poi_csv=open(poi_fn_csv,'w',encoding='utf-8')
+                poi_csv=open(fP,'w',encoding='utf-8')
                 csv_writer=csv.writer(poi_csv)    
             elif fP.suffix=='.json':
-                poi_json=open(poi_fn_json,'w',encoding='utf-8')
+                poi_json=open(fP,'w',encoding='utf-8')
     num=0
     jsonDS=[] #存储读取的数据，用于.json格式数据的保存
     #循环切分的检索区域，逐区下载数据
