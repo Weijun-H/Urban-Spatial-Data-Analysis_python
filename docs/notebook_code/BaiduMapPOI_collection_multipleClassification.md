@@ -1,6 +1,6 @@
 > Created on Thu Nov 16 12/12/38 2017  @author: Richie Bao-caDesign设计(cadesign.cn)
 > __+updated on Fri Jun 26 11/02/19 2020 by Richie Bao
-## 1. 多个分类POI数据爬取与描述性统计图表
+## 1. 多个分类POI数据爬取与描述性统计
 [JupterLab .ipynb文件下载位置](https://github.com/richieBao/Urban-Spatial-Data-Analysis_python/tree/master/notebook/BaiduMapPOIcollection_ipynb)
 
 ### 1.1 多个分类POI爬取
