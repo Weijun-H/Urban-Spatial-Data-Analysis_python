@@ -1,6 +1,8 @@
 > Created on Thu Nov 16 12/12/38 2017  @author: Richie Bao-caDesign设计(cadesign.cn)
 > __+updated on Fri Jun 26 11/02/19 2020 by Richie Bao
-## 1. 百度地图POI数据的抓取-多个分类实现与描述性统计图表
+## 1. 多个分类POI数据爬取与描述性统计图表
+[JupterLab .ipynb文件下载位置](https://github.com/richieBao/Urban-Spatial-Data-Analysis_python/tree/master/notebook/BaiduMapPOIcollection_ipynb)
+
 ### 1.1 多个分类POI爬取
 在上一章节新建立有两个函数工具，分别是‘百度地图开放平台POI数据爬取’和‘转换.csv格式的POI数据为pandas的DataFrame’。为了能够方便应用所建立的函数工具，使用Anaconda的Spyder创建一个新的文件为util_poi.py，将上述两个函数置于其中，同时包括函数所使用的库。对于所包括的库，为方便日后函数迁移，以及明确每个函数所调用的库，将对应调用库的语句分别置于各个函数内部。util_poi.py与待调用该文件的文件于同一文件夹下。util_poi.py文件可从本书GitHub仓库中下载。调入语句如下：
 
@@ -591,7 +593,7 @@ B_team   87.0
 C_team   82.5
 ```
 
-箱型图（Box plot），又称盒须图，盒式（状）图或箱线图，一种用作显示一组数据分散情况的统计图。显示的一组数据包括最大值，最小值，中位数和上下四分位数，因此使用箱型图较之单一的数值而言可以更清晰的观察数据分布情况。如图（Wikipedia）：
+箱型图（Box plot），又称盒须图，盒式（状）图或箱线图，一种用作显示一组数据分散情况的统计图。显示的一组数据包括最大值，最小值，中位数和上下四分位数，因此使用箱型图较之单一的数值而言可以更清晰的观察数据分布情况。如图（引自Wikipedia）：
 
 ```
                             +-----+-+       
@@ -609,7 +611,7 @@ bowlingContest_scores_transpose=bowlingContest_scores.stack().unstack(level=0)
 boxplot=bowlingContest_scores_transpose.boxplot(column=['A_team', 'B_team', 'C_team'])
 ```
 
-<a href=""><img src="./imgs/2_10.png" height="500" width="auto" title="caDesign"/></a>
+<a href=""><img src="./imgs/2_10.png" height="auto" width="auto" title="caDesign"/></a>
 
 plotly库所提供的箱型图可以互动显示具体的数值，具有更强的图示能力。
 
@@ -710,7 +712,7 @@ teahouse                               0.629374
 bar                                    0.189297
 ```
 
-<a href=""><img src="./imgs/2_12.png" height="500" width="auto" title="caDesign"/></a>
+<a href=""><img src="./imgs/2_12.png" height="auto" width="auto" title="caDesign"/></a>
 
 ###### 标准计分（分数）
 🍅建立简单数据示例，数据来源于《漫画统计学》考试成绩。在这个案例中，虽然Mason和Reece分别在English和Chinese科目中，以及history和biology科目中具有相同的分数，但是因为标准差，即离散程度不同，所表示的重要程度亦不一样。标准差越小，离散程度越小，则数值每一单位的变化都会影响最终排名，即每一分都很重要。也可以理解为标准差小时，其他同学很容易追上你的成绩，但是标准差大时，其他同学不容易追上你的成绩。
@@ -739,8 +741,8 @@ Reece       81       90       61       73
 
 标准计分的特征：
 
-1. 无论作为变量的满分为几分，其标准计分的平均数势必为0， 二七标准差势必为1；
-2. 无论作为变量的单位是什么，其标准计分的平均数势必为0， 二七标准差势必为1. 
+1. 无论作为变量的满分为几分，其标准计分的平均数势必为0， 而其标准差势必为1；
+2. 无论作为变量的单位是什么，其标准计分的平均数势必为0， 而其标准差势必为1. 
 
 ```python
 from scipy.stats import zscore
@@ -783,7 +785,7 @@ print(delicacy_Zscore.head())
 cdelicacy_Zscore.rolling(20, win_type='triang').sum().plot.line(figsize=(25,8))
 ```
 
-<a href=""><img src="./imgs/2_13.png" height="500" width="auto" title="caDesign"/></a>
+<a href=""><img src="./imgs/2_13.png" height="auto" width="auto" title="caDesign"/></a>
 
 从上图可以观察到，当价格标准计分（橘色线）高时，对应的评价分数标准计分通常趋低，反之亦然。即如果饭店在定制饭菜销售价格时，如果定制的价格趋近于均值，相对而言，所获取的评价越高于平均值。
 
@@ -791,7 +793,7 @@ cdelicacy_Zscore.rolling(20, win_type='triang').sum().plot.line(figsize=(25,8))
 #### 1.5.1 数据处理技术
 * pandas处理技术汇总-A
 
-pandas的DataFrame和Series数据格式是最为常用的数据格式，尤其在地理空间数据处理中更具有重要的作用。pandas提供的处理工具数不胜数，想以通读pandas手册来掌握pandas是不现实，也是不可取的。通常来讲，可以学习入门手册，对其有个初步了解就，再在处理数据过程中遇到相关问题时搜索检索。虽然不用系统的查看pandas功用，但是有些常用的功能会经常用到，又或者有些功能是自己多费周章才搜索查到，或者自己又进一步完善编写，如果不记录，下次遇到时即使搜索也不宜查到，那么可以尝试根据自己的情况建立自己的代码仓库，当用到时方便查询。
+pandas的DataFrame和Series数据格式是最为常用的数据格式，尤其在地理空间数据处理中更具有重要的作用。pandas提供的处理工具数不胜数，想以通读pandas手册来掌握pandas是不现实，也是不可取的。通常来讲，可以学习入门手册，对其有个初步了解，再在处理数据过程中遇到相关问题时搜索获取。虽然不用系统的查看pandas功用，但是有些常用的功能会经常用到，又或者有些功能是自己多费周章才搜索查到，或者自己又进一步完善编写，如果不记录，下次遇到时即使搜索也不宜查到，那么可以尝试根据自己的情况建立自己的代码仓库，当用到时方便查询。
 
 [pandas](https://pandas.pydata.org/)库官方文档一般给出了详细的解释，包括功用、参数、属性以及实际案例，因此在汇总pandas处理技术时，只是简单罗列说明函数及其功用，备以查询，具体内容则可以借助这个简要说明进一步利用搜索引擎检索。
 1. 数据合并类
@@ -869,11 +871,13 @@ test_Zscore=test_score.apply(zscore)
 
 4. 索引操作类（(multi)index 和 columns）
 
--充值索引， `df=df.reset_index()`
+-重置索引， `df=df.reset_index()`
 
 -设置（多重）索引， `ranmenPrice_bins.set_index(['price_bins',ranmenPrice_bins.index],drop=False,inplace=True)`
 
--重命名， ranmenPriceBins_median.rename(columns={'price':'median'},inplace=True)
+-多重索引切分， `df=poi_gpd.loc[pd.IndexSlice[:,:2],:]`
+
+-重命名， `ranmenPriceBins_median.rename(columns={'price':'median'},inplace=True)`
 
 -组织结构， `bowlingContest_scores_transpose=bowlingContest_scores.stack().unstack(level=0)`
 
