@@ -506,7 +506,7 @@ def frequency_bins(df,bins):
     #print(ranmen_fre)
     
     #E-计算频数比例
-    df_fre['fre_percent%']=df_fre.apply(lambda row:row['fre']/ranmen_fre.fre.sum()*100,axis=1)
+    df_fre['fre_percent%']=df_fre.apply(lambda row:row['fre']/df_fre.fre.sum()*100,axis=1)
     
     return df_fre
 bins=range(0,600+50,50) #配置分割区间（组距）    
