@@ -266,7 +266,7 @@ fig.show()
 
 <a href=""><img src="./imgs/2_3.jpg" height="auto" width="auto" title="caDesign"/></a>
 
-### 1.4 描述性统计图表
+### 1.4 描述性统计
 #### 1.4.1 读取数据与查看
 * 读取已经保存的.pkl数据。通过.plot()确认读取的数据是否正常，或者直接`poi_gpd.head()`查看数据。
 
