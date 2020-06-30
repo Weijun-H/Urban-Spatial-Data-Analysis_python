@@ -37,13 +37,15 @@ poi_classificationName={
 配置基本参数。注意在配置上一章节时用到`query_dic`，此次批量下载将所有参数在循环函数外字典形式单独给出，方便调用。而`query_dic`字典参数在批量下载函数内配置。
 
 该部分代码仅是用于说明上一章节参数配置形式，本次无需敲入。
+
+```
 query_dic={
     'query':'旅游景点',
     'page_size':'20',
     'scope':2,
     'ak':'uqRcWhrQ6h0pAaSdxYn73GMWgd5uNrRX',
 }
-
+```
 
 ```python
 poi_config_para={
