@@ -5,14 +5,14 @@
 ```mermaid
 erDiagram
     USDAM-py ||--o{ geospatial-data : place 
-    ORDER ||--|{ LINE-ITEM : contains
-    USDAM-py }|..|{ DELIVERY-ADDRESS : uses
+    USDAM-py }|..|{ non : non
     data ||--|{ POI : Baidu
     POI ||--|{ geospatial-data : get-data
     POI ||--|{ single-classificaiton : crawler
     POI ||--|{ multiple-classificaiton : crawler
     single-classificaiton ||--|{ geospatial-data : geo
     USDAM-py }|..|{ descriptive-statistics : knowledge-point
+    multiple-classificaiton ||--|| descriptive-statistics : knowledge-point
 ```
 
 
