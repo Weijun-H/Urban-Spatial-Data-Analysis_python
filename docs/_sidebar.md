@@ -1,5 +1,6 @@
 * [前言](./markdown/preface.md)
 * [指南](./markdown/instruction.md)
+* [章节结构思考](./markdown/structure_chapters.md)
 * 1\. 准备
     * [1.1 代码的整洁之道](./markdown/cleanCode.md)
     * [1.2 python解释器与笔记](./markdown/pythonInterpreterAndNote.md)
