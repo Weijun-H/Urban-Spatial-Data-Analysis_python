@@ -115,3 +115,37 @@ def filePath_extraction(dirpath,fileType):
            if tempList: #剔除文件名列表为空的情况,即文件夹下存在不为指定文件类型的文件时，上一步列表会返回空列表[]
                filePath_Info.setdefault(dirpath,tempList)
     return filePath_Info
+
+
+#频数分布计算
+def frequency_bins(df,bins):
+    import pandas as pd
+    '''function-频数分布计算'''
+
+    #A-组织数据
+    column_name=df.columns[0]
+    column_bins_name=df.columns[0]+'_bins'
+    df[column_bins_name]=pd.cut(x=df[column_name],bins=bins,right=False) #参数right=False指定为包含左边值，不包括右边值。
+    df_bins=df.sort_values(by=[column_name]) #按照分割区间排序
+    df_bins.set_index([column_bins_name,df_bins.index],drop=False,inplace=True) #以price_bins和原索引值设置多重索引，同时配置drop=False参数保留原列。
+    #print(df_bins.head(10))
+
+    #B-频数计算
+    dfBins_frequency=df_bins[column_bins_name].value_counts() #dropna=False  
+    dfBins_relativeFrequency=df_bins[column_bins_name].value_counts(normalize=True) #参数normalize=True将计算相对频数(次数) dividing all values by the sum of values
+    dfBins_freqANDrelFreq=pd.DataFrame({'fre':dfBins_frequency,'relFre':dfBins_relativeFrequency})
+    #print(dfBins_freqANDrelFreq)
+
+    #C-组中值计算
+    dfBins_median=df_bins.median(level=0)
+    dfBins_median.rename(columns={column_name:'median'},inplace=True)
+    #print(dfBins_median)
+
+    #D-合并分割区间、频数计算和组中值的DataFrame格式数据。
+    df_fre=dfBins_freqANDrelFreq.join(dfBins_median).sort_index().reset_index() #在合并时会自动匹配index
+    #print(ranmen_fre)
+
+    #E-计算频数比例
+    df_fre['fre_percent%']=df_fre.apply(lambda row:row['fre']/df_fre.fre.sum()*100,axis=1)
+
+    return df_fre
