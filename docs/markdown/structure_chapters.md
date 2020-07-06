@@ -1,32 +1,18 @@
 # 章节结构思考————不定性
 书的章节结构符合人们的学习习惯会让学习的过程变的顺畅，但是在写作过程中，必然不能一步到位，而是一个不断调整、整合的过程，因此增加了这个部分，来思考这个问题。
 
-### 知识关联
-```mermaid
-erDiagram
-    USDAM-py ||--o{ geospatial-data : place 
-    USDAM-py }|..|{ non : non
-    data ||--|{ POI : Baidu
-    POI ||--|{ geospatial-data : get-data
-    POI ||--|{ single-classificaiton : crawler
-    POI ||--|{ multiple-classificaiton : crawler
-    single-classificaiton ||--|{ geospatial-data : geo
-    USDAM-py }|..|{ descriptive-statistics : knowledge-point
-    multiple-classificaiton ||--|| descriptive-statistics : knowledge-point
-```
-
 
 ### 知识点分布
 ```mermaid
 classDiagram
-单个分类POI数据爬取与地理空间点地图 --> 代码类 : ？
+单个分类POI数据爬取与地理空间点地图 --> 代码类 : 
 单个分类POI数据爬取与地理空间点地图 : 单个分类POI爬取
 单个分类POI数据爬取与地理空间点地图 : 将csv格式的POI数据转换为pandas的DataFrame
 单个分类POI数据爬取与地理空间点地图 : 将数据格式为DataFramed的POI数据转换为GeoPandas地理空间数据GeoDataFrame
 单个分类POI数据爬取与地理空间点地图 : 使用plotly库建立地图
 
 多个分类POI数据爬取与描述性统计 --|> 代码类
-多个分类POI数据爬取与描述性统计 --|> 描述性统计
+多个分类POI数据爬取与描述性统计 --|> 描述性统计 : 拆分
 多个分类POI数据爬取与描述性统计 : 多个分类POI爬取
 多个分类POI数据爬取与描述性统计 : 批量转换.csv格式数据为GeoDataFrame
 多个分类POI数据爬取与描述性统计 : 
@@ -40,7 +26,6 @@ classDiagram
 描述性统计 : 标准差
 描述性统计 : 标准计分
 
-正态分布与概率密度函数_异常值处理 --|> 代码类
 正态分布与概率密度函数_异常值处理 --|> 统计学
 正态分布与概率密度函数_异常值处理 : 正态分布
 正态分布与概率密度函数_异常值处理 : 概率密度函数
@@ -50,4 +35,20 @@ classDiagram
 正态分布与概率密度函数_异常值处理 : 异常值处理
 正态分布与概率密度函数_异常值处理 : 给定特定值计算概率，以及找到给定概率的值
 
+
+
+```
+
+### 知识关联
+```mermaid
+erDiagram
+    USDAM-py ||--o{ geospatial-data : place 
+    USDAM-py }|..|{ non : non
+    data ||--|{ POI : Baidu
+    POI ||--|{ geospatial-data : get-data
+    POI ||--|{ single-classificaiton : crawler
+    POI ||--|{ multiple-classificaiton : crawler
+    single-classificaiton ||--|{ geospatial-data : geo
+    USDAM-py }|..|{ descriptive-statistics : knowledge-point
+    multiple-classificaiton ||--|| descriptive-statistics : knowledge-point
 ```
