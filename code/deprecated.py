@@ -61,5 +61,13 @@ sns.distplot(x_quadraticSum,bins=30,hist=False,label="")
 
 
 
-
+if hdf5==True:
+    hdf5_fp=os.path.join(save_path,"osm_%s.hdf5"%osm_type)
+    if os.path.exists(hdf5_fp):
+        os.remove(hdf5_fp)
+    else:
+        print("Can not delete the file as it doesn't exists,built new one!")
+        hf=h5py.File('osm_%s.hdf5'%osm_type, 'w')
+        hf.create_dataset('osm_%s'%osm_type, data=osm_node_gdf)
+        hf.close()
 
