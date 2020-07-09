@@ -784,7 +784,7 @@ print(delicacy_Zscore.head())
 在实验数据里可以计算z_score比较某一饭店的价格和评分的重要性，其意义是，是否价格越接近均值，对应的评分越高于（低于）均值。但是单独看单一饭店的数据很难判断是否存在这样的一种关系，因此可以打印曲线，观察曲线的变化规律。因为原始数据量较大，需要使用df.rolling()方法平滑数据后再绘制曲线观察数据。
 
 ```python
-cdelicacy_Zscore.rolling(20, win_type='triang').sum().plot.line(figsize=(25,8))
+delicacy_Zscore.rolling(20, win_type='triang').sum().plot.line(figsize=(25,8))
 ```
 
 <a href=""><img src="./imgs/2_13.png" height="auto" width="auto" title="caDesign"/></a>
