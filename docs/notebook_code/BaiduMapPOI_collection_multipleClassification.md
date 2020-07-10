@@ -631,7 +631,7 @@ fig.show()
 
 <a href=""><img src="./imgs/2_11.jpg" height="500" width="auto" title="caDesign"/></a>
 
-求标准差，又称准偏差或均方差（Standard Deviation，缩写SD），数学符号通常用σ（sigma）。用于测量一组数值的离散程度，公式：$SD= \sqrt{1/N \sum_{i=1}^N { x_{i}- \mu  } } $ 其中$\mu$ 为平均值。虽然A_team和B_team具有相同的均值，但是数值的分布情况迥然不同，通过计算标准差比较离散程度，标准差越小，代表数据的离散程度越小；反之，标准差越大，离散程度越大。
+求标准差，又称准偏差或均方差（Standard Deviation，缩写SD），数学符号通常用σ（sigma）。用于测量一组数值的离散程度，公式：$SD= \sqrt{1/N \sum_{i=1}^N { ( x_{i}- \mu)^{2}   } } $ 其中$\mu$ 为平均值。虽然A_team和B_team具有相同的均值，但是数值的分布情况迥然不同，通过计算标准差比较离散程度，标准差越小，代表数据的离散程度越小；反之，标准差越大，离散程度越大。
 
 ```python
 bowlingContest_std=bowlingContest_scores.std(level=0)

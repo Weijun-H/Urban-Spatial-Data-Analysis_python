@@ -68,7 +68,7 @@ plt.show()
 
 
 #### 1.1.2 概率密度函数（Probability density function，PDF）
-当直方图的组距无限缩小至极限后，能够拟合出一条曲线，计算这个分布曲线的公式即为概率密度函数：$f(x)= \frac{1}{ \sigma  \times  \sqrt{2 \pi } }  \times  e^{- \frac{1}{2}  [ \frac{x- \mu }{  \sigma  } ]^{2} } $ 其中，$\sigma$为标准差；$\mu$为平均值;$e$为自然对数的底，其值大约为2.7182...。在上述程序中，计算概率论密度函数时，并未计算每个数值，而是使用Plt.hist()返回值bins替代，即每一组距的左边沿和右边沿，这里是划分了30份，因此首位数为第1个频数宽度的左边沿，末位数为最后一个频数宽度的右边沿，而中间的所有是左右边沿重叠。而概率密度函数的积分，即为累计分布函数（cumulative distribution function ,CDF），可以用`numpy.cumsum()`计算 ，为给定轴上数组元素的累积和。
+当直方图的组距无限缩小至极限后，能够拟合出一条曲线，计算这个分布曲线的公式即为概率密度函数：$f(x)= \frac{1}{ \sigma  \times  \sqrt{2 \pi } }  \times  e^{- \frac{1}{2}  [ \frac{x- \mu }{  \sigma  } ]^{2} } $ 其中，$\sigma$为标准差；$\mu$为平均值;$e$为自然对数的底，其值大约为2.7182...。在上述程序中，计算概率论密度函数时，并未计算每个数值，而是使用Plt.hist()返回值bins替代，即每一组距的左边沿和右边沿，这里是划分了30份，因此首位数为第1个频数宽度的左边沿，末位数为最后一个频数宽度的右边沿，而中间的所有是左右边沿重叠。而概率密度函数的积分，即为累积分布函数（cumulative distribution function ,CDF），可以用`numpy.cumsum()`计算 ，为给定轴上数组元素的累积和。
 
 图表打印的库主要包括[Matplotlib](https://matplotlib.org/)，[plotly(含dash)](https://plotly.com/)，[bokeh](https://docs.bokeh.org/en/latest/index.html)，[seaborn](https://seaborn.pydata.org/)等，具体选择哪个打印图表，没有固定的标准，通常根据当前数据图表打印的目的、哪个库能够满足要求，以及个人更习惯用哪个库来确定。在上述使用Matplotlib库打印密度函数曲线时，是自行计算，而Seaborn提供了`seaborn.distplot()`方法，指定bins参数后可以直接获取上述结果。需要注意bins参数的配置，如果为一个整数值，则是划分同宽度频数宽度（bin）的数量，如果是列表，则为频数宽度的边缘，例如[1,2,3,4]，表示[[1,2),[2,3),[3,4]]的频数宽度列表，`[`代表包含左边沿数据，`]`代表包含右边沿数据,而`(`，和`)`则是分别代表不包含左或右边沿数据。同pandas的`pandas.core.indexes.range.RangeIndex`即RangeIndex数据格式。
 

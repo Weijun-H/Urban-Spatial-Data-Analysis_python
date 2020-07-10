@@ -11,11 +11,12 @@
     * [2.4 OpenStreetMap（OSM）数据处理](./notebook_code/OSM_dataProcessing.md)
 
 * 检索
-    * [代码工具索引](./markdown/codeToolIdx.md)
-    * [数据索引](./markdown/dataIdx.md)
+    * [代码工具](./markdown/codeToolIdx.md)
+    * [数据](./markdown/dataIdx.md)
     * [库分类汇总](./markdown/libraryClassiSummary.md)
-    * [参考文献索引](./markdown/reference.md)
-    * [实验索引](./markdown/experimentIdx.md)
+    * [参考文献](./markdown/reference.md)
+    * [实验](./markdown/experimentIdx.md)
+    * [缩写]
 
 
 
