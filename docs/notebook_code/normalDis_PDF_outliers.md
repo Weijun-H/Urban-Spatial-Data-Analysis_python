@@ -349,7 +349,7 @@ import matplotlib.pyplot as plt
 fig, ax = plt.subplots(1, 1)
 mean, var, skew, kurt = norm.stats(moments='mvsk')  
 print('mean, var, skew, kurt=',(mean, var, skew, kurt)) #验证符合标准正态分布的相关统计量
-x=np.linspace(norm.ppf(0.01),norm.ppf(0.99), 100) #norm.ppf为累积分布函数的逆元素
+x=np.linspace(norm.ppf(0.01),norm.ppf(0.99), 100) #norm.ppf  - Percent point function (inverse of cdf — percentiles)
 ax.plot(x, norm.pdf(x), 'r-', lw=5, alpha=0.6, label='norm pdf')  #norm.pdf为概率密度函数
 rv=norm() #固定形状（偏度和峰度）、位置loc（平均值）和比例scale（标准差）参数，即指定固定值
 ax.plot(x, rv.pdf(x), 'k-', lw=3, label='frozen pdf') #固定/“冻结”分布（frozen distribution）
