@@ -50,6 +50,13 @@ def baiduPOI_dataCrawler(query_dic,bound_coordinate,partition,page_num_range,poi
                         baidu_coordinateSystem=[subData.get('location').get('lng'),subData.get('location').get('lat')] #获取百度坐标系
                         Mars_coordinateSystem=cc.bd09togcj02(baidu_coordinateSystem[0], baidu_coordinateSystem[1]) #百度坐标系-->火星坐标系
                         WGS84_coordinateSystem=cc.gcj02towgs84(Mars_coordinateSystem[0],Mars_coordinateSystem[1]) #火星坐标系-->WGS84
+                        
+                        #更新坐标
+                        subData['location']['lat']=WGS84_coordinateSystem[1]
+                        subData['detail_info']['lat']=WGS84_coordinateSystem[1]
+                        subData['location']['lng']=WGS84_coordinateSystem[0]
+                        subData['detail_info']['lng']=WGS84_coordinateSystem[0]  
+                        
                         if csv_writer:
                             csv_writer.writerow([subData]) #逐行写入.csv文件
                         jsonDS.append(subData)

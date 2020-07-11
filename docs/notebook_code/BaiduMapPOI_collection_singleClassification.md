@@ -70,10 +70,10 @@ poi_fn_json=os.path.join(data_path,'poi_json.json')
 ```python
 bound_coordinate={'leftBottom':[108.776852,34.186027],'rightTop':[109.129275,34.382171]} #
 page_num_range=range(20)
-partition=3
+partition=4 #4
 query_dic={
     'query':'旅游景点',
-    'page_size':'20',
+    'page_size':'20', #20
     'scope':2,
     'ak':'uqRcWhrQ6h0pAaSdxYn73GMWgd5uNrRX',
 }
@@ -126,6 +126,12 @@ def baiduPOI_dataCrawler(query_dic,bound_coordinate,partition,page_num_range,poi
                         baidu_coordinateSystem=[subData.get('location').get('lng'),subData.get('location').get('lat')] #获取百度坐标系
                         Mars_coordinateSystem=cc.bd09togcj02(baidu_coordinateSystem[0], baidu_coordinateSystem[1]) #百度坐标系-->火星坐标系
                         WGS84_coordinateSystem=cc.gcj02towgs84(Mars_coordinateSystem[0],Mars_coordinateSystem[1]) #火星坐标系-->WGS84
+                        
+                        #更新坐标
+                        subData['location']['lat']=WGS84_coordinateSystem[1]
+                        subData['detail_info']['lat']=WGS84_coordinateSystem[1]
+                        subData['location']['lng']=WGS84_coordinateSystem[0]
+                        subData['detail_info']['lng']=WGS84_coordinateSystem[0]                        
                         if csv_writer:
                             csv_writer.writerow([subData]) #逐行写入.csv文件
                         jsonDS.append(subData)
@@ -142,18 +148,24 @@ def baiduPOI_dataCrawler(query_dic,bound_coordinate,partition,page_num_range,poi
 jsonDS=baiduPOI_dataCrawler(query_dic,bound_coordinate,partition,page_num_range,poi_fn_list=[poi_fn_csv,poi_fn_json])    
 ```
 
-    Start downloading data...
-    No.1 was written to the .csv file.
-    No.2 was written to the .csv file.
-    No.3 was written to the .csv file.
-    No.4 was written to the .csv file.
-    No.5 was written to the .csv file.
-    No.6 was written to the .csv file.
-    No.7 was written to the .csv file.
-    No.8 was written to the .csv file.
-    No.9 was written to the .csv file.
-    The download is complete.
-    
+Start downloading data...
+No.1 was written to the .csv file.
+No.2 was written to the .csv file.
+No.3 was written to the .csv file.
+No.4 was written to the .csv file.
+No.5 was written to the .csv file.
+No.6 was written to the .csv file.
+No.7 was written to the .csv file.
+No.8 was written to the .csv file.
+No.9 was written to the .csv file.
+No.10 was written to the .csv file.
+No.11 was written to the .csv file.
+No.12 was written to the .csv file.
+No.13 was written to the .csv file.
+No.14 was written to the .csv file.
+No.15 was written to the .csv file.
+No.16 was written to the .csv file.
+The download is complete.    
 
 ### 1.2 将.csv格式的POI数据转换为pandas的DataFrame
 读取已经保存的poi_csv.csv文件，因为在文件保存时，使用的是csv和json库，因此读取时仍旧使用对应的库。在最为常用使用的pandas库中也有'read_csv()'和`read_json()`等方法，但是csv文件具体存储时，保存的方式也是多样的，因此pandas读取.csv或者.json文件最好是其自身所存储的文件，数据格式则是对应的，而读取上述保存的POI的.csv文件，则会出现错误。只有知道数据格式，才能够有目的的提取数据，读取每一行的数据格式如下：

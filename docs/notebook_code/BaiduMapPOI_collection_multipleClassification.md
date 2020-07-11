@@ -199,8 +199,8 @@ def poi_csv2GeoDF_batch(poi_paths,fields_extraction,save_path):
     poi_fieldsExtraction=poi_df_concat.loc[:,fields_extraction]
     poi_geoDF=poi_fieldsExtraction.copy(deep=True)
     poi_geoDF['geometry']=poi_geoDF.apply(lambda row:Point(row.location_lng,row.location_lat),axis=1) 
-    crs={'init': 'epsg:4326'} #配置坐标系统，参考：https://spatialreference.org/        
-    poiAll_gpd=gpd.GeoDataFrame(poi_geoDF,crs=crs)
+    crs_4326=CRS('epsg:4326') #配置坐标系统，参考：https://spatialreference.org/        
+    poiAll_gpd=gpd.GeoDataFrame(poi_geoDF,crs=crs_4326)     
     
     poiAll_gpd.to_pickle(save_path['pkl'])
     poiAll_gpd.to_file(save_path['geojson'],driver='GeoJSON')
@@ -499,6 +499,7 @@ def frequency_bins(df,bins):
     #print(dfBins_freqANDrelFreq)
     
     #C-组中值计算
+    df_bins["price"]=df_bins["price"].astype(float)
     dfBins_median=df_bins.median(level=0)
     dfBins_median.rename(columns={column_name:'median'},inplace=True)
     #print(dfBins_median)
@@ -665,6 +666,7 @@ print(delicacy_rating.head())
 查看餐厅类型。并移除错误的分类数据，例如`'教育培训;其他'`。同时可以调整子分类的名称，例如由'美食;中餐厅' 修改为'中餐厅'，其中使用了df.applay()方法。最后将其映射为英文字符，在打印时也可以避免显示错误，如果显示中文字符错误，需要增加相应处理语句。
 
 ```python
+pd.options.mode.chained_assignment = None
 print(delicacy_rating.detail_info_tag.unique())
 delicacy_rating_clean=delicacy_rating[delicacy_rating.detail_info_tag!='教育培训;其他']
 print(delicacy_rating_clean.detail_info_tag.unique())
@@ -679,7 +681,9 @@ def str_row(row):
 delicacy_rating_clean.loc[:,["detail_info_tag"]]=delicacy_rating_clean["detail_info_tag"].apply(str_row)  
 print(delicacy_rating_clean.detail_info_tag.unique())
 
-tag_mapping={'中餐厅':'Chinese_restaurant','小吃快餐店':'Snake_bar','nan':'nan','其他':'others','外国餐厅':'Foreign_restaurant','蛋糕甜品店':'CakeANDdessert_shop','咖啡厅':'cafe','茶座':'teahouse','酒吧':'bar'}
+tag_mapping={'中餐厅':'Chinese_restaurant','小吃快餐店':'Snake_bar','nan':'nan','其他':'others','外国餐厅':'Foreign_restaurant',
+             '蛋糕甜品店':'CakeANDdessert_shop','咖啡厅':'cafe','茶座':'teahouse','酒吧':'bar','美食':'delicacy','公司':'company',
+             '商铺':'store','洗浴按摩':'massage','超市':'supermarket','快捷酒店':'budgetHotel','园区':'Park'}
 delicacy_rating_clean.loc[:,["detail_info_tag"]]=delicacy_rating_clean["detail_info_tag"].replace(tag_mapping)
 print(delicacy_rating_clean.detail_info_tag.unique())
 ```
@@ -766,8 +770,10 @@ Reece -0.029617  1.392020  0.207107  1.014719
 🐨返回到实验数据，分别计算美食部分总体评分'detail_info_overall_rating'和价格 'detail_info_price'的标准计分。
 
 ```python
+pd.options.mode.chained_assignment = None
 delicacy=poi_gpd.xs('poi_0_delicacy',level=0)
 delicacy_dropna=delicacy.dropna(subset=['detail_info_overall_rating', 'detail_info_price'])
+delicacy_dropna[['detail_info_overall_rating', 'detail_info_price']]=delicacy_dropna[['detail_info_overall_rating', 'detail_info_price']].astype(float)
 delicacy_Zscore=delicacy_dropna[['detail_info_overall_rating', 'detail_info_price']].apply(zscore).join(delicacy["name"])
 print(delicacy_Zscore.head())
 ```
@@ -788,8 +794,6 @@ delicacy_Zscore.rolling(20, win_type='triang').sum().plot.line(figsize=(25,8))
 ```
 
 <a href=""><img src="./imgs/2_13.png" height="auto" width="auto" title="caDesign"/></a>
-
-从上图可以观察到，当价格标准计分（橘色线）高时，对应的评价分数标准计分通常趋低，反之亦然。即如果饭店在定制饭菜销售价格时，如果定制的价格趋近于均值，相对而言，所获取的评价越高于平均值。
 
 ### 1.5 要点
 #### 1.5.1 数据处理技术

@@ -71,3 +71,29 @@ if hdf5==True:
         hf.create_dataset('osm_%s'%osm_type, data=osm_node_gdf)
         hf.close()
 
+def construct_grids(lat,lng,cell_size):
+    import numpy as np
+    '''
+    function-根据经纬度坐标建立栅格raster（格网mesh）
+    
+    Paras:
+    lat - 维度
+    lng - 经度
+    cell_size - 栅格单元大小 
+    '''
+    lat_min=min(lat)
+    lng_min=min(lng)
+    lat_max=max(lat)
+    lng_max=max(lng)
+    
+    lat_grid=np.arange(lat_min,lat_max,cell_size)
+    lng_grid=np.arange(lng_min,lng_max,cell_size)
+    
+    X, Y = np.meshgrid(lat_grid[::1], lng_grid[::1][::-1])
+    xy = np.vstack([Y.ravel(), X.ravel()]).T
+    
+    return xy
+
+cell_size=0.05
+xy=construct_grids(poi_gpd.location_lat,poi_gpd.location_lng,cell_size)
+poi_gpd['raster_kde']=poi_coordi_kernel(xy.T)
