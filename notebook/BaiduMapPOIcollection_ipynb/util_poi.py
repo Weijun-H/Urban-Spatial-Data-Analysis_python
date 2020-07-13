@@ -156,3 +156,116 @@ def frequency_bins(df,bins):
     df_fre['fre_percent%']=df_fre.apply(lambda row:row['fre']/df_fre.fre.sum()*100,axis=1)
 
     return df_fre
+
+
+#convert points .shp to raster 将点数据写入为raster数据。使用raster.SetGeoTransform,栅格化数据。参考GDAL官方代码
+def pts2raster(pts_shp,raster_path,cellSize,field_name=False):
+    from osgeo import gdal, ogr,osr
+    '''
+    function - 将.shp格式的点数据转换为.tif栅格(raster)
+    
+    Paras:
+    pts_shp - .shp格式点数据文件路径
+    raster_path - 保存的栅格文件路径
+    cellSize - 栅格单元大小
+    field_name - 写入栅格的.shp点数据属性字段
+    '''
+    #定义空值（没有数据）的栅格数值 Define NoData value of new raster
+    NoData_value=-9999
+    
+    #打开.shp点数据，并返回地理区域范围 Open the data source and read in the extent
+    source_ds=ogr.Open(pts_shp)
+    source_layer=source_ds.GetLayer()
+    x_min, x_max, y_min, y_max=source_layer.GetExtent()
+    
+    #使用GDAL库建立栅格 Create the destination data source
+    x_res=int((x_max - x_min) / cellSize)
+    y_res=int((y_max - y_min) / cellSize)
+    target_ds=gdal.GetDriverByName('GTiff').Create(raster_path, x_res, y_res, 1, gdal.GDT_Float64) #gdal的数据类型 gdal.GDT_Float64,gdal.GDT_Int32...
+    target_ds.SetGeoTransform((x_min, cellSize, 0, y_max, 0, -cellSize))
+    outband=target_ds.GetRasterBand(1)
+    outband.SetNoDataValue(NoData_value)
+
+    #向栅格层中写入数据
+    if field_name:
+        gdal.RasterizeLayer(target_ds,[1], source_layer,options=["ATTRIBUTE={0}".format(field_name)])
+    else:
+        gdal.RasterizeLayer(target_ds,[1], source_layer,burn_values=[-1])   
+        
+    #配置投影坐标系统
+    spatialRef=source_layer.GetSpatialRef()
+    target_ds.SetProjection(spatialRef.ExportToWkt())       
+        
+    outband.FlushCache()
+    return gdal.Open(raster_path).ReadAsArray()
+
+
+def pts_geoDF2raster(pts_geoDF,raster_path,cellSize,scale):
+    from osgeo import gdal,ogr,osr
+    import numpy as np
+    from scipy import stats
+    '''
+    function - 将GeoDaraFrame格式的点数据转换为栅格数据
+    
+    Paras:
+    pts_geoDF - GeoDaraFrame格式的点数据
+    raster_path - 保存的栅格文件路径
+    cellSize - 栅格单元大小
+    scale - 缩放核密度估计值
+    '''
+    #定义空值（没有数据）的栅格数值 Define NoData value of new raster
+    NoData_value=-9999
+    x_min, y_min,x_max, y_max=pts_geoDF.geometry.total_bounds
+
+    #使用GDAL库建立栅格 Create the destination data source
+    x_res=int((x_max - x_min) / cellSize)
+    y_res=int((y_max - y_min) / cellSize)
+    target_ds=gdal.GetDriverByName('GTiff').Create(raster_path, x_res, y_res, 1, gdal.GDT_Float64 )
+    target_ds.SetGeoTransform((x_min, cellSize, 0, y_max, 0, -cellSize))
+    outband=target_ds.GetRasterBand(1)
+    outband.SetNoDataValue(NoData_value)   
+    
+    #配置投影坐标系统
+    spatialRef = osr.SpatialReference()
+    epsg=int(pts_geoDF.crs.srs.split(":")[-1])
+    spatialRef.ImportFromEPSG(epsg)  
+    target_ds.SetProjection(spatialRef.ExportToWkt())
+    
+    #向栅格层中写入数据
+    #print(x_res,y_res)
+    X, Y = np.meshgrid(np.linspace(x_min,x_max,x_res), np.linspace(y_min,y_max,y_res))
+    positions=np.vstack([X.ravel(), Y.ravel()])
+    values=np.vstack([pts_geoDF.geometry.x, pts_geoDF.geometry.y])    
+    print("Start calculating kde...")
+    kernel=stats.gaussian_kde(values)
+    Z=np.reshape(kernel(positions).T, X.shape)
+    print("Finish calculating kde!")
+    print(values)
+        
+    outband.WriteArray(Z*scale)        
+    outband.FlushCache()
+    print("conversion complete!")
+    return gdal.Open(raster_path).ReadAsArray()
+
+
+def start_time():
+    import datetime
+    '''
+    function-计算当前时间
+    '''
+    start_time=datetime.datetime.now()
+    print("start time:",start_time)
+    return start_time
+
+def duration(start_time):
+    import datetime
+    '''
+    function-计算持续时间
+
+    Paras:
+    start_time - 开始时间
+    '''
+    end_time=datetime.datetime.now()
+    print("end time:",end_time)
+    duration=(end_time-start_time).seconds/60
+    print("Total time spend:%.2f minutes"%duration)

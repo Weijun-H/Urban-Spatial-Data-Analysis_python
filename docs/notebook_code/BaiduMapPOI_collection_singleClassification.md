@@ -307,7 +307,7 @@ crs={'init': 'epsg:4326'} #配置坐标系统，参考：https://spatialreferenc
 poi_gpd=gpd.GeoDataFrame(poi_geoDF,crs=crs)
 poi_gpd.plot(column='detail_info_comment_num') #在这里设置了显示的参数为列`detail_info_comment_num`,即对<'query':'旅游景点'>配置中旅游景点的评论数量
 ```
-<a href="https://jupyter.org/"><img src="./imgs/expe_1_1.jpg" height="200" width="auto" title="caDesign">
+<a href="https://jupyter.org/"><img src="./imgs/expe_1_1.jpg" height="200" width="auto" title="caDesign"></a>
 
 #### 1.3.2 使用plotly库建立地图
 geopandas库提供的地图显示方法功能有限，因为便捷，通常用于数据的查看，当需要地图具有一定质量，表达更多信息，甚至能够交互操作时，可以使用[plotly](https://plotly.com/)图表库实现。其地图底图使用了[mapbox](https://www.mapbox.com/)提供的地图数据，要使用其功能需要注册，并获取访问许可（access token），该部分操作相当便捷，可以自行查看。

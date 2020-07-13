@@ -9,6 +9,7 @@
     * [2.2 多个分类POI数据爬取与描述性统计图表](./notebook_code/BaiduMapPOI_collection_multipleClassification.md)
     * [2.3 正态分布与概率密度函数，及异常值处理](./notebook_code/normalDis_PDF_outliers.md)
     * [2.4 OpenStreetMap（OSM）数据处理](./notebook_code/OSM_dataProcessing.md)
+    * [2.5 核密度估计与地理空间点密度分布](./notebook_code/kde.md)
 
 * 检索
     * [代码工具](./markdown/codeToolIdx.md)
@@ -16,7 +17,9 @@
     * [库分类汇总](./markdown/libraryClassiSummary.md)
     * [参考文献](./markdown/reference.md)
     * [实验](./markdown/experimentIdx.md)
-    * [缩写]
+    * [缩写](./markdown/abbreviation.md)
+    * [note](./markdown/note.md)
+
 
 
 
