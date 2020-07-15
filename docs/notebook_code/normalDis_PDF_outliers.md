@@ -11,7 +11,7 @@ import util_poi
 import pandas as pd
 poi_gpd=pd.read_pickle('./data/poiAll_gpd.pkl') #读取已经存储为.pkl格式的POI数据，其中包括geometry字段，为GeoDataFrame地理信息数据，可以通过poi_gpd.plot()迅速查看数据。
 delicacy_price=poi_gpd.xs('poi_0_delicacy',level=0).detail_info_price  #提取美食价格数据
-delicacy_price_df=delicacy_price.to_frame(name='price') 
+delicacy_price_df=delicacy_price.to_frame(name='price').astype(float) 
 bins=list(range(0,300+5,5))+[600] #配置分割区间（组距），因为直方图更容易解读差异小的数值，而美食的价格分布标准差较大，即离散程度较大，因此在组距划分时，远离中心值的部分并非为等距划分。
 poiPrice_fre=util_poi.frequency_bins(delicacy_price_df,bins) 
 print(poiPrice_fre.head())
@@ -135,7 +135,7 @@ for skew_data in skewNorm_list:
 
 n=0
 for s in s_list:
-    sns.kdeplot(s,label="μ=%s, σ2=%s,kur=%.2f"%(mu_list[n],variance[n],kur[n]))
+    sns.kdeplot(s,label="μ=%s, $σ^2$=%s=%s,kur=%.2f"%(mu_list[n],variance[n],kur[n]))
     n+=1  
 plt.plot()
 ```
@@ -385,7 +385,59 @@ print("用.ppf找到给定概率值为98%的数值为：",norm.ppf(.98,100,12))
     用.sf计算值大于或等于113待概率为： 0.13933024744962208
     可以观察到.cdf（<=113）概率结果+.sf(>=113)概率结果为： 1.0
     用.ppf找到给定概率值为98%的数值为： 124.64498692758187
+
+
+在传统的概率计算中，已知z-score，即标准计分，可以通过查表的方式来获取对应的概率值，这种方式已经很少使用。为了直观的观察概率值，由曲线、横轴和通过对应概率密度函数值的垂直线围合的面积即为概率值，通过绘制图表可以更清晰的观察。
+
+```python
+def probability_graph(x_i,x_min,x_max,x_s=-9999,left=True,step=0.001,subplot_num=221,loc=0,scale=1):
+    import math
+    '''
+    function - 正态分布概率计算及图形表述
     
+    Paras:
+    x_i - 待预测概率的值
+    x_min - 数据集区间最小值
+    x_max - 数据集区间最大值
+    x_s - 第2个带预测概率的值，其值大于x_i值
+    left - 是否计算小于或等于，或者大于或等于指定值的概率
+    step - 数据集区间的步幅
+    subplot_num - 打印子图的序号，例如221中，第一个2代表列，第二个2代表行，第三个是子图的序号，即总共2行2列总共4个子图，1为第一个子图
+    loc - 即均值
+    scale - 标准差
+    '''
+    x=np.arange(x_min,x_max,step)
+    ax=plt.subplot(subplot_num)
+    ax.margins(0.2) 
+    ax.plot(x,norm.pdf(x,loc=loc,scale=scale))
+    ax.set_title('N(%s,$%s^2$),x=%s'%(loc,scale,x_i))
+    ax.set_xlabel('x')
+    ax.set_ylabel('pdf(x)')
+    ax.grid(True)
+    
+    if x_s==-9999:
+        if left:
+            px=np.arange(x_min,x_i,step)
+            ax.text(loc-loc/10,0.01,round(norm.cdf(x_i,loc=loc,scale=scale),3), fontsize=20)
+        else:
+            px=np.arange(x_i,x_max,step)
+            ax.text(loc+loc/10,0.01,round(1-norm.cdf(x_i,loc=loc,scale=scale),3), fontsize=20)
+        
+    else:
+        px=np.arange(x_s,x_i,step)
+        ax.text(loc-loc/10,0.01,round(norm.cdf(x_i,loc=loc,scale=scale)-norm.cdf(x_s,loc=loc,scale=scale),2), fontsize=20)
+    ax.set_ylim(0,norm.pdf(loc,loc=loc,scale=scale)+0.005)
+    ax.fill_between(px,norm.pdf(px,loc=loc,scale=scale),alpha=0.5, color='g')
+plt.figure(figsize=(10,10))
+probability_graph(x_i=113,x_min=50,x_max=150,step=1,subplot_num=221,loc=100,scale=12)
+probability_graph(x_i=113,x_min=50,x_max=150,step=1,left=False,subplot_num=223,loc=100,scale=12)
+probability_graph(x_i=113,x_min=50,x_max=150,x_s=90,step=1,subplot_num=222,loc=100,scale=12)
+probability_graph(x_i=90,x_min=50,x_max=150,step=1,subplot_num=224,loc=100,scale=20)
+plt.show()
+```
+
+<a href="https://jupyter.org/"><img src="./imgs/3_8.png" height="auto" width="auto" title="caDesign"/></a>
+
 
 ### 1.2 要点
 #### 1.2.1 数据处理技术
