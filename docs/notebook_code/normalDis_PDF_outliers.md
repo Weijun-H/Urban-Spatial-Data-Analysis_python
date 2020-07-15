@@ -354,8 +354,8 @@ ax.plot(x, norm.pdf(x), 'r-', lw=5, alpha=0.6, label='norm pdf')  #norm.pdf为�
 rv=norm() #固定形状（偏度和峰度）、位置loc（平均值）和比例scale（标准差）参数，即指定固定值
 ax.plot(x, rv.pdf(x), 'k-', lw=3, label='frozen pdf') #固定/“冻结”分布（frozen distribution）
 
-vals = norm.ppf([0.001, 0.5, 0.999])
-print("验证累计分布函数CDF与其逆元素PPF数值是否相等或近似：",np.allclose([0.001, 0.5, 0.999], norm.cdf(vals)))
+vals = norm.ppf([0.001, 0.5, 0.999])  #返回概率为0.1%、50%和99.9%的值，默认loc=0,scale=1
+print("验证累计分布函数CDF返回值与其PPF返回值是否相等或近似：",np.allclose([0.001, 0.5, 0.999], norm.cdf(vals)))
 
 r=norm.rvs(size=1000) #指定数据集大小
 ax.hist(r, density=True, histtype='stepfilled', alpha=0.2)
