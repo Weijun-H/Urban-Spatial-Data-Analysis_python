@@ -97,3 +97,15 @@ def construct_grids(lat,lng,cell_size):
 cell_size=0.05
 xy=construct_grids(poi_gpd.location_lat,poi_gpd.location_lng,cell_size)
 poi_gpd['raster_kde']=poi_coordi_kernel(xy.T)
+
+
+
+
+'''from kneed import DataGenerator, KneeLocator
+因为kneed库无法正常加载，因此单独读取文件函数
+kneed库官方地址：https://github.com/arvkevi/kneed
+'''
+from knee_locator import KneeLocator  
+knee=KneeLocator(x=sample_size_list,y=sample_sigma_list, curve='concave', direction='decreasing') #concave convex
+print(round(knee.knee, 3))
+print(round(knee.elbow, 3))

@@ -269,3 +269,19 @@ def duration(start_time):
     print("end time:",end_time)
     duration=(end_time-start_time).seconds/60
     print("Total time spend:%.2f minutes"%duration)
+    
+    
+def is_outlier(data,threshold=3.5):
+   import numpy as np
+   '''
+   function-判断异常值
+
+   Params:
+   data - 待分析的数据，列表或者一维数组
+   threshold - 判断是否为异常值的边界条件    
+   '''
+   MAD=np.median(abs(data-np.median(data)))
+   modified_ZScore=0.6745*(data-np.median(data))/MAD
+   #print(modified_ZScore)
+   is_outlier_bool=modified_ZScore>threshold    
+   return is_outlier_bool,data[~is_outlier_bool]   

@@ -10,6 +10,7 @@
     * [2.3 正态分布与概率密度函数，及异常值处理](./notebook_code/normalDis_PDF_outliers.md)
     * [2.4 OpenStreetMap（OSM）数据处理](./notebook_code/OSM_dataProcessing.md)
     * [2.5 核密度估计与地理空间点密度分布](./notebook_code/kde.md)
+    * [2.6 标准误，中心极限定理，t分布，统计显著性，效应量，置信区间；公共健康数据的地理空间分布与相关性分析](./notebook_code/correlation.md)
 
 * 检索
     * [代码工具](./markdown/codeToolIdx.md)
